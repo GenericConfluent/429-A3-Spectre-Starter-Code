@@ -79,7 +79,7 @@ victim_function:
 	sd	a0,-24(s0)
 	.loc 1 36 9
 	lui	a5,%hi(array1_size)
-	lw	a5,%lo(array1_size)(a5)
+	lw	a5,%lo(array1_size)(a5) # loads array_size1
 	slli	a5,a5,32
 	srli	a5,a5,32
 	.loc 1 36 6
@@ -90,7 +90,7 @@ victim_function:
 	addi	a4,a5,%lo(array1)
 	ld	a5,-24(s0)
 	add	a5,a4,a5
-	lbu	a5,0(a5)
+	lbu	a5,0(a5) # loads array1[x]
 	sext.w	a5,a5
 	.loc 1 37 30
 	slliw	a5,a5,9
@@ -99,7 +99,7 @@ victim_function:
 	lui	a4,%hi(array2)
 	addi	a4,a4,%lo(array2)
 	add	a5,a4,a5
-	lbu	a4,0(a5)
+	lbu	a4,0(a5) # loads array2[array1[x] * 512]
 	.loc 1 37 10
 	lui	a5,%hi(temp)
 	lbu	a5,%lo(temp)(a5)
